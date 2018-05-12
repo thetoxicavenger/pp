@@ -1,10 +1,17 @@
 version: '3'
 services:
-  web:
-    build: .
+  api:
+    build: ./api
     ports:
       - "5000:5000"
     volumes:
       - .:/code
-  redis:
-    image: "redis:alpine"
+  nginx:
+    image: nginx:1-alpine
+    volumes:
+     - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+     - ./nginx/common:/usr/share/nginx/html/common
+    ports:
+     - "3000:3000"
+  mongo:
+      image: "mongo:alpine"
