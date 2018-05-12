@@ -1,0 +1,19 @@
+routing
+
+for now, this microservice is just going to be a pure api that will be consumed by nginx via the frontend webpack-dev-server.
+
+nginx will redirect /api to localhost:3001/, so basically stripping the initial path which would be redunant.
+
+we're going to take a rest approach to this problem right now, but I want it to be graph-based.
+
+routes:
+
+app.post('/matches/log')
+body: winner, loser
+reqs: both fields need to match things already in the database. As a result, the design should be changed to a select. This also means we need the ability to add a new player.
+
+app.get('/standings)
+body: ordered set of players from top to bottom.
+
+app.post('/players/new)
+body: name
